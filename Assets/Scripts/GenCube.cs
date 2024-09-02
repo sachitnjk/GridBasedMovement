@@ -12,6 +12,11 @@ public class GenCube : MonoBehaviour
     private int row;
     private int column;
 
+    private void Start()
+    {
+        hoverModel?.SetActive(false);
+    }
+
     public void SetRowAndColumn(int row, int column)
     {
         this.row = row;
@@ -23,13 +28,15 @@ public class GenCube : MonoBehaviour
     private void OnMouseEnter()
     {
         hoverModel.SetActive(true);
-        UIManager.Instance.HandleOnTileHover(row, column);
+
+        UIManager.Instance?.HandleOnTileHover(row, column);
     }
 
     private void OnMouseExit()
     {
-        hoverModel.SetActive(false);
-        UIManager.Instance.HandleOnTileHoverEnd();
+        hoverModel?.SetActive(false);
+
+        UIManager.Instance?.HandleOnTileHoverEnd();
     }
     #endregion
     
