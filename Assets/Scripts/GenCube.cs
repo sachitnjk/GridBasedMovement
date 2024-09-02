@@ -6,8 +6,10 @@ using UnityEngine;
 
 public class GenCube : MonoBehaviour
 {
+    [Header("References needed")]
     [SerializeField] private GameObject hoverModel;
 
+    #region Hover events
     //using mouse enter & exit unity events
     private void OnMouseEnter()
     {
@@ -18,4 +20,6 @@ public class GenCube : MonoBehaviour
     {
         hoverModel.SetActive(false);
     }
+    #endregion
+    
 }
