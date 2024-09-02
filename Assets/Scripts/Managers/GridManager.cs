@@ -34,18 +34,24 @@ public class GridManager : MonoBehaviour
             for (int y = 0; y < columns; y++)
             {
                 Vector3 cellPosition = startPos + new Vector3(x * cellSize, 0, y * cellSize);
-                gridArray[x, y] = InstantiateCell(cellPosition);
+                gridArray[x, y] = InstantiateCell(cellPosition, x, y);
             }
         }
     }
 
-    private GameObject InstantiateCell(Vector3 cellPos)
+    private GameObject InstantiateCell(Vector3 cellPos, int row, int column)
     {
         if (genCubePrefab != null)
         {
             GameObject instantiatedGenCube =
                 Instantiate(genCubePrefab, cellPos, Quaternion.identity, this.gameObject.transform);
             instantiatedGenCube.transform.localScale = new Vector3(cellSize, cellSize, cellSize);
+
+            GenCube genCube = instantiatedGenCube.GetComponent<GenCube>();
+            if (genCube != null)
+            {
+                genCube.SetRowAndColumn(row, column);
+            }
             
             return instantiatedGenCube;
         }
