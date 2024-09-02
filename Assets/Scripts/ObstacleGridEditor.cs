@@ -40,6 +40,7 @@ public class ObstacleGridEditor : EditorWindow
 
     private void InitGrid()
     {
+        //For initializing grid based on SO rows and columsn
         grid = new bool[obstacleData.rows, obstacleData.columns];
         foreach (Vector2Int postion in obstacleData.obstaclePositions)
         {
@@ -51,6 +52,7 @@ public class ObstacleGridEditor : EditorWindow
     {
         for (int x = 0; x < obstacleData.rows; x++)
         {
+            //For checkbox like boxes
             EditorGUILayout.BeginHorizontal();
             for (int y = 0; y < obstacleData.columns; y++)
             {

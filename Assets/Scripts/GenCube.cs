@@ -25,12 +25,20 @@ public class GenCube : MonoBehaviour
         objectOrEntityOnCube = objectOrEntity;
     }
 
+    public void RemoveObjectOrEntityOnCube()
+    {
+        if (objectOrEntityOnCube != null)
+        {
+            objectOrEntityOnCube = null;
+        }
+    }
+
     public Transform GetObjectPoint()
     {
         return objectPoint;
     }
     
-    public bool GetOccupiedStatus()
+    public bool BGetOccupiedStatus()
     {
         return objectOrEntityOnCube != null;
     }
