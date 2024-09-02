@@ -8,6 +8,9 @@ public class GenCube : MonoBehaviour
 {
     [Header("References needed")]
     [SerializeField] private GameObject hoverModel;
+    [SerializeField] private Transform objectPoint;
+
+    private GameObject objectOrEntityOnCube;
 
     private int row;
     private int column;
@@ -15,6 +18,21 @@ public class GenCube : MonoBehaviour
     private void Start()
     {
         hoverModel?.SetActive(false);
+    }
+
+    public void SetObjectOrEntityOnCube(GameObject objectOrEntity)
+    {
+        objectOrEntityOnCube = objectOrEntity;
+    }
+
+    public Transform GetObjectPoint()
+    {
+        return objectPoint;
+    }
+    
+    public bool GetOccupiedStatus()
+    {
+        return objectOrEntityOnCube != null;
     }
 
     public void SetRowAndColumn(int row, int column)
