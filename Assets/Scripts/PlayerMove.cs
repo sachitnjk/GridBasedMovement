@@ -7,7 +7,8 @@ using UnityEngine.InputSystem;
 public class PlayerMove : MonoBehaviour
 {
     [Header("Player References")]
-    // [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private GameObject playerSpriteObject;
     [SerializeField] private Animator playerAnimator;
 
     [Range(2f, 15f)]
@@ -19,6 +20,8 @@ public class PlayerMove : MonoBehaviour
     private InputAction leftClickAction;
     private InputAction rightClickAction;
 
+    private Vector3 spriteLookAtDirection;
+    
     private GenCube currentGenCube;
     private List<GenCube> path;
     private int pathIndex;
@@ -50,6 +53,9 @@ public class PlayerMove : MonoBehaviour
                     path = pathFinding.FindPath(currentGenCube, targetGenCube);
                     pathIndex = 0;
                     isMoving = true;
+                    playerAnimator.SetBool("isMoving", true);
+                    
+                    currentGenCube.RemoveObjectOrEntityOnCube();
                 }
                 else
                 {
@@ -61,6 +67,7 @@ public class PlayerMove : MonoBehaviour
         if (path != null && pathIndex < path.Count)
         {
             MoveAlongPath();
+            SpriteFaceMaintain();
         }
     }
 
@@ -81,6 +88,7 @@ public class PlayerMove : MonoBehaviour
             currentGenCube = path[pathIndex - 1];
             path = null;
             isMoving = false;
+            playerAnimator.SetBool("isMoving", false);
         }
     }
 
@@ -89,4 +97,27 @@ public class PlayerMove : MonoBehaviour
         this.pathFinding = pathFinding;
         this.currentGenCube = genCube;
     }
+    
+    private void SpriteFaceMaintain()
+    {
+        if (path != null && pathIndex < path.Count)
+        {
+            Vector3 direction = path[pathIndex].transform.position - transform.position;
+            direction.y = 0f;
+            spriteLookAtDirection = direction.normalized;
+            
+            Quaternion targetRotation = Quaternion.LookRotation(spriteLookAtDirection);
+            playerSpriteObject.transform.rotation = targetRotation;
+            
+            if(!spriteRenderer.flipX && direction.x < 0)
+            {
+                spriteRenderer.flipX = true;
+            }
+            else if (spriteRenderer.flipX && direction.x > 0)
+            {
+                spriteRenderer.flipX = false;
+            }
+        }
+    }
+
 }
