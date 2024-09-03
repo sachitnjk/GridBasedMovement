@@ -9,6 +9,7 @@ public class ObstacleManager : MonoBehaviour
     [SerializeField] private ObstacleDataSO obstacleData;
     [SerializeField] private GameObject obstaclePrefab;
     [SerializeField] private PlayerSpawner spawner;
+    [SerializeField] private EnemySpawner enemySpawner;
     
     [Header("Uncheck if random rotation on obstacle needs to be turned off")]
     [SerializeField] private bool bObstacleRandomRotation = true;
@@ -52,6 +53,7 @@ public class ObstacleManager : MonoBehaviour
         }
         
         spawner.SpawnPlayer();
+        enemySpawner.SpawnEnemy();
     }
 
     private Quaternion GetRandomRotation()

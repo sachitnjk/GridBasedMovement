@@ -8,6 +8,7 @@ public class EventManager : MonoBehaviour
     public static EventManager Instance;
 
     public Action OnGridGenerated;
+    public Action<GenCube> OnPlayerMove;
     
     private void Awake()
     {
@@ -24,6 +25,11 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public void InvokeOnPlayerMove(GenCube targetCube)
+    {
+        OnPlayerMove?.Invoke(targetCube);
+    }
+    
     public void InvokeOnGridGenerated()
     {
         OnGridGenerated?.Invoke();

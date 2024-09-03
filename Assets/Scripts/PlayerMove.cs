@@ -51,11 +51,14 @@ public class PlayerMove : MonoBehaviour
                 if (targetGenCube != null && !targetGenCube.BGetOccupiedStatus())
                 {
                     path = pathFinding.FindPath(currentGenCube, targetGenCube);
-                    pathIndex = 0;
-                    isMoving = true;
-                    playerAnimator.SetBool("isMoving", true);
-                    
-                    currentGenCube.RemoveObjectOrEntityOnCube();
+                    if (path != null)
+                    {
+                        currentGenCube.RemoveObjectOrEntityOnCube();
+                        pathIndex = 0;
+                        isMoving = true;
+                        playerAnimator.SetBool("isMoving", true);
+                        
+                    }
                 }
                 else
                 {
@@ -85,10 +88,13 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
+            path[pathIndex-1].SetObjectOrEntityOnCube(this.gameObject);
             currentGenCube = path[pathIndex - 1];
             path = null;
             isMoving = false;
             playerAnimator.SetBool("isMoving", false);
+
+            EventManager.Instance.OnPlayerMove(currentGenCube);
         }
     }
 

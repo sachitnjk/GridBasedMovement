@@ -83,7 +83,7 @@ public class PathFinding : MonoBehaviour
         return lowestCostingNode;
     }
 
-    private List<GenCube> GetNeighbours(GenCube genCube)
+    public List<GenCube> GetNeighbours(GenCube genCube)
     {
         List<GenCube> neighbours = new List<GenCube>();
 
@@ -92,22 +92,22 @@ public class PathFinding : MonoBehaviour
 
         //checking only left, right, down.
         
-        if (x - 1 >= 0)
+        if (x - 1 >= 0 && !gridManager.GetGridArray()[x - 1, y].BGetOccupiedStatus())
         {
             neighbours.Add(gridManager.GetGridArray()[x - 1, y]);
         }
 
-        if (x + 1 < gridManager.GetRows())
+        if (x + 1 < gridManager.GetRows() && !gridManager.GetGridArray()[x + 1, y].BGetOccupiedStatus())
         {
             neighbours.Add(gridManager.GetGridArray()[x + 1, y]);
         }
 
-        if (y - 1 >= 0)
+        if (y - 1 >= 0 && !gridManager.GetGridArray()[x, y - 1].BGetOccupiedStatus())
         {
             neighbours.Add(gridManager.GetGridArray()[x, y - 1]);
         }
 
-        if (y + 1 < gridManager.GetColumns())
+        if (y + 1 < gridManager.GetColumns() && !gridManager.GetGridArray()[x, y + 1].BGetOccupiedStatus())
         {
             neighbours.Add(gridManager.GetGridArray()[x, y + 1]);
         }
