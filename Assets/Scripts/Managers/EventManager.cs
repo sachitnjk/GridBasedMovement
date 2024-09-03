@@ -8,7 +8,6 @@ public class EventManager : MonoBehaviour
     public static EventManager Instance;
 
     public Action OnGridGenerated;
-    public Action OnObstacleGenerated;
     
     private void Awake()
     {
@@ -28,10 +27,5 @@ public class EventManager : MonoBehaviour
     public void InvokeOnGridGenerated()
     {
         OnGridGenerated?.Invoke();
-    }
-
-    public void InvokeOnObstacleGenerated()
-    {
-        OnObstacleGenerated?.Invoke();
     }
 }

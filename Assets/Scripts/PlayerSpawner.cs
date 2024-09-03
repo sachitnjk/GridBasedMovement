@@ -18,16 +18,9 @@ public class PlayerSpawner : MonoBehaviour
         {
             gridArray = gridManager.GetGridArray();
         }
-
-        EventManager.Instance.OnObstacleGenerated += SpawnPlayer;
     }
 
-    private void OnDestroy()
-    {
-        EventManager.Instance.OnObstacleGenerated -= SpawnPlayer;
-    }
-
-    private void SpawnPlayer()
+    public void SpawnPlayer()
     {
         if (gridArray == null && gridManager != null)
         {

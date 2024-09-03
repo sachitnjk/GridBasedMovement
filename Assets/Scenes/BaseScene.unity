@@ -724,9 +724,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2925896360321022789, guid: 7761e397d7b52284286f1f95434ad9f8, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 318611004}
+    - target: {fileID: 2925896360321022789, guid: 7761e397d7b52284286f1f95434ad9f8, type: 3}
       propertyPath: obstacleData
       value: 
-      objectReference: {fileID: 11400000, guid: e28fc870b92aaca439ac24a429126a81, type: 2}
+      objectReference: {fileID: 11400000, guid: 4c9889813439d41408e9311f2a8fdf83, type: 2}
     - target: {fileID: 2925896360321022789, guid: 7761e397d7b52284286f1f95434ad9f8, type: 3}
       propertyPath: bObstacleRandomRotation
       value: 1
