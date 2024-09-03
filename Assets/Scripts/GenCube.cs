@@ -15,11 +15,17 @@ public class GenCube : MonoBehaviour
     private int row;
     private int column;
 
+    public int gCost;
+    public int hCost;
+    public GenCube parent;
+
+    public int FCost => gCost + hCost;
+
     private void Start()
     {
         hoverModel?.SetActive(false);
     }
-
+    
     public void SetObjectOrEntityOnCube(GameObject objectOrEntity)
     {
         objectOrEntityOnCube = objectOrEntity;
@@ -43,6 +49,16 @@ public class GenCube : MonoBehaviour
         return objectOrEntityOnCube != null;
     }
 
+    public int GetRow()
+    {
+        return row;
+    }
+
+    public int GetColumn()
+    {
+        return column;
+    }
+
     public void SetRowAndColumn(int row, int column)
     {
         this.row = row;
@@ -53,7 +69,10 @@ public class GenCube : MonoBehaviour
     //using mouse enter & exit unity events
     private void OnMouseEnter()
     {
-        hoverModel.SetActive(true);
+        if (objectOrEntityOnCube == null)
+        {
+            hoverModel.SetActive(true);
+        }
 
         UIManager.Instance?.HandleOnTileHover(row, column);
     }

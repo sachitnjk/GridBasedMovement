@@ -37,8 +37,6 @@ public class ObstacleManager : MonoBehaviour
             {
                 obstacle = Instantiate(obstaclePrefab, spawnPostion, Quaternion.identity);
             }
-
-            Debug.Log(spawnPostion);
             
             //Functionality for setting obstacle variable on the cube script
             RaycastHit hit;
@@ -51,6 +49,8 @@ public class ObstacleManager : MonoBehaviour
                 }
             }
         }
+        
+        EventManager.Instance.InvokeOnObstacleGenerated();
     }
 
     private Quaternion GetRandomRotation()

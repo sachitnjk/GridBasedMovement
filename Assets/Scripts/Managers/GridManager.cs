@@ -16,7 +16,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private float cellSize = 1f;
     [SerializeField] private GameObject genCubePrefab;
 
-    private GameObject[,] gridArray;
+    private GenCube[,] gridArray;
 
     private void Start()
     {
@@ -26,18 +26,16 @@ public class GridManager : MonoBehaviour
 
     private void GenerateGrid()
     {
-        gridArray = new GameObject[rows, columns];
+        gridArray = new GenCube[rows, columns];
 
         Vector3 startPos = transform.position;
-        
-        Debug.Log("something x, y");
         
         for (int x = 0; x < rows; x++)
         {
             for (int y = 0; y < columns; y++)
             {
                 Vector3 cellPosition = startPos + new Vector3(x * cellSize, 0, y * cellSize);
-                gridArray[x, y] = InstantiateCell(cellPosition, x, y);
+                gridArray[x, y] = InstantiateCell(cellPosition, x, y).GetComponent<GenCube>();
             }
         }
     }
@@ -59,5 +57,20 @@ public class GridManager : MonoBehaviour
             return instantiatedGenCube;
         }
         return null;
+    }
+
+    public GenCube[,] GetGridArray()
+    {
+        return gridArray;
+    }
+
+    public int GetRows()
+    {
+        return rows;
+    }
+
+    public int GetColumns()
+    {
+        return columns;
     }
 }

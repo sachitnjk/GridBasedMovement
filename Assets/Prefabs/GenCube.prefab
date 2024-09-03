@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1743439393739942753}
   - component: {fileID: 8693204238262910324}
   - component: {fileID: 2465120403585395574}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CubeModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8734334017104169938}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ObjectOrEntityPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 4844726434009970314}
   - component: {fileID: 5872265633054614559}
   - component: {fileID: 7870704778196520691}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GenCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!114 &7870704778196520691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 4595396303276510258}
   - component: {fileID: 7071675559983649805}
   - component: {fileID: 6480474214306992869}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CubeHoverModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
