@@ -21,6 +21,7 @@ public class GridManager : MonoBehaviour
     private void Start()
     {
         GenerateGrid();
+        EventManager.Instance.InvokeOnGridGenerated();
     }
 
     private void GenerateGrid()
@@ -28,6 +29,8 @@ public class GridManager : MonoBehaviour
         gridArray = new GameObject[rows, columns];
 
         Vector3 startPos = transform.position;
+        
+        Debug.Log("something x, y");
         
         for (int x = 0; x < rows; x++)
         {
@@ -55,8 +58,6 @@ public class GridManager : MonoBehaviour
             
             return instantiatedGenCube;
         }
-
-        Debug.LogError("genCube prefab not set in editor");
         return null;
     }
 }

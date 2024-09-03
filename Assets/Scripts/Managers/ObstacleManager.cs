@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ObstacleManager : MonoBehaviour
 {
@@ -12,7 +14,12 @@ public class ObstacleManager : MonoBehaviour
 
     private void Start()
     {
-        GeneratObstacles();
+        EventManager.Instance.OnGridGenerated += GeneratObstacles;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.Instance.OnGridGenerated -= GeneratObstacles;
     }
 
     private void GeneratObstacles()
@@ -31,9 +38,11 @@ public class ObstacleManager : MonoBehaviour
                 obstacle = Instantiate(obstaclePrefab, spawnPostion, Quaternion.identity);
             }
 
+            Debug.Log(spawnPostion);
+            
             //Functionality for setting obstacle variable on the cube script
             RaycastHit hit;
-            if (Physics.Raycast(spawnPostion + Vector3.up * 10, Vector3.down, out hit, Mathf.Infinity))
+            if (Physics.Raycast(spawnPostion + Vector3.up * 2, Vector3.down, out hit, Mathf.Infinity, (1<<6)))
             {
                 GenCube genCube = hit.collider.GetComponent<GenCube>();
                 if (genCube != null)
